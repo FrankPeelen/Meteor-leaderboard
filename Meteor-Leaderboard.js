@@ -4,9 +4,16 @@ console.log("Hello world");
 
 if(Meteor.isClient){
   console.log("Hello client");
+
   Template.leaderboard.helpers({
     'player': function(){
-      return PlayersList.find()
+      return PlayersList.find();
+    }
+  });
+
+  Template.leaderboard.events({
+    'click .player': function(){
+      console.log("You clicked a .player element");
     }
   });
 }
