@@ -18,4 +18,15 @@
   {{#if showSelectedPlayer}}
     Selected Player: {{showSelectedPlayer.name}}
 	{{/if}}
+	<br><br>
+	<input type="button" class="remove" value="Remove Player">
+	<br><br>
+	{{> addPlayerForm}}
+</template>
+
+<template name="addPlayerForm">
+	<form>
+		<input type="text" name="playerName">
+		<input type="submit" value="Add Player">
+	</form>
 </template>
