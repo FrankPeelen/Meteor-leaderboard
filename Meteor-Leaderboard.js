@@ -5,10 +5,11 @@ console.log("Hello world");
 if(Meteor.isClient){
   console.log("Hello client");
 
+  Meteor.subscribe('thePlayers');
+
   Template.leaderboard.helpers({
     'player': function(){
-      var currentUserId = Meteor.userId();
-      return PlayersList.find({createdBy: currentUserId}, {sort: {score: -1, name: 1} })
+      return PlayersList.find({}, {sort: {score: -1, name: 1} })
     },
     'selectedClass': function(){
       var playerId = this._id;
@@ -59,4 +60,9 @@ if(Meteor.isClient){
 
 if(Meteor.isServer){
   console.log("Hello server");
+
+  Meteor.publish('thePlayers', function(){
+    var currentUserId = this.userId;
+    return PlayersList.find({createdBy: currentUserId})
+  });
 }
